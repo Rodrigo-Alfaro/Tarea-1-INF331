@@ -1,0 +1,6 @@
+2025-03-27 21:09:33, INFO - Usuario: admin Ingreso al sistema
+2025-03-27 22:09:28, WARN - Intento de Ingreso con Usuario o password incorrecto
+2025-03-27 22:09:37, INFO - Usuario: admin Ingreso al sistema
+2025-03-27 22:09:48, INFO - Se consulta el inventario
+2025-03-27 22:10:03, INFO - Producto: Pintura eliminado
+2025-03-27 22:10:06, INFO - Se genera el reporte de inventario
