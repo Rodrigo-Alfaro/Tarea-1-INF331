@@ -49,7 +49,7 @@ public class Main {
                         """);
                 int opcion = scanner.nextInt();
                 switch (opcion) {
-                    case 1:
+                    case 1 -> {
                         System.out.println("Ingresa el nombre del producto");
                         scanner.nextLine();
                         String nombre = scanner.nextLine();
@@ -62,75 +62,70 @@ public class Main {
                         scanner.nextLine(); //Esto limpia el buffer ya que nextDouble no consume \n
                         System.out.println("Ingresa la categoria del producto");
                         String categoria = scanner.nextLine();
-                        try{
+                        try {
                             Productos producto = new Productos(nombre, descripcion, cantidad, precio, categoria);
                             if (producto.getCantidad() < 0 || producto.getPrecio() < 0) {
                                 throw new IllegalArgumentException("La cantidad o el precio no pueden ser negativos.");
-                            }
-                            else{
+                            } else {
                                 inventario.agregar_producto(producto, cantidad);
                                 System.out.println("Producto agregado");
                             }
                         } catch (IllegalArgumentException e) {
-                            System.out.println("La cantidad o el precio no pueden ser negativos. Por favor ingresa de nuevo el producto");
-                        }break;
-                    case 2:
-                        inventario.print_Inventario();
-                        break;
-                    case 3:
+                            System.out.println("La cantidad o el precio no pueden ser negativos. Por favor ingresa de nuevo el producto" + e.getMessage());
+                        }
+                    }
+                    case 2 -> inventario.print_Inventario();
+                    case 3 -> {
                         System.out.println("Ingresa el nombre producto que deseas actualizar");
                         scanner.nextLine();
                         String producto_update = scanner.nextLine();
                         Productos current_producto = inventario.check_producto(producto_update);
                         if (current_producto == null) break;
                         System.out.println("1) Agregar cantidad\n2) Eliminar cantidad");
-                        switch (scanner.nextInt()){//idk if this gonna work - this work c:
-                            case 1:
+                        switch (scanner.nextInt()) {
+                            case 1 -> {
                                 System.out.println("Cantidad a agregar");
                                 int plus = scanner.nextInt();
                                 inventario.agregar_cantidad(current_producto, plus);
                                 System.out.println("Producto actualizado");
-                                break;
-                            case 2:
+                            }
+                            case 2 -> {
                                 System.out.println("Cantidad a eliminar");
                                 int minus = scanner.nextInt();
                                 inventario.eliminar_cantidad(current_producto, minus);
                                 System.out.println("Producto actualizado");
-                                break;
+                            }
                         }
-                        break;
-                    case 4:
+                    }
+                    case 4 -> {
                         System.out.println("Ingresa el nombre del producto que deseas eliminar");
                         scanner.nextLine();
                         String producto_delete = scanner.nextLine();
                         inventario.eliminar_producto(inventario.check_producto(producto_delete));
                         System.out.println("Producto eliminado");
-                        break;
-                    case 5:
+                    }
+                    case 5 -> {
                         System.out.println("Ingresa la categoria del producto que deseas buscar");
                         scanner.nextLine();
                         String categoria_search = scanner.nextLine();
                         inventario.print_categoria(categoria_search);
-                        break;
-                    case 6:
+                    }
+                    case 6 -> {
                         System.out.println("Ingresa el nombre del producto que deseas buscar");
                         scanner.nextLine();
                         String producto_search = scanner.nextLine();
                         inventario.check_producto(producto_search);
-                        break;
-                    case 7:
-                        inventario.reporte_inventario();
-                        break;
-                    case 8:
-                        System.exit(0);
+                    }
+                    case 7 -> inventario.reporte_inventario();
+                    case 8 -> System.exit(0);
                 }
             }catch (InputMismatchException e) {
-                System.out.println("Ingresa un numero valido");
+                System.out.println("Ingresa un numero valido" + e.getMessage());
                 scanner.nextLine();
             } catch (NoSuchElementException e) {
-                System.out.println("Error: No se encontraron más elementos en la entrada.");
+                System.out.println("Error: No se encontraron más elementos en la entrada." + e.getMessage());
             } catch (IllegalStateException e) {
-                System.out.println("Error: El scanner ya está cerrado.");
+                System.out.println("Error: El scanner ya está cerrado." + e.getMessage());
             }
         }
     }
