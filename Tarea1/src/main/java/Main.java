@@ -1,14 +1,14 @@
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.util.JsonUtils;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 
 public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
-
     public static void main(String[] args) {
-
-
 
         //Inicializando cosas necesarias
         Usuarios usuario = new Usuarios("admin", "123");
@@ -28,7 +28,6 @@ public class Main {
 
         //Menu
         //User handling
-        logger.info("Sistema Inicializado");
         while (!usuario.check_usuario(usuario, name, pass)){
             System.out.println("""
                \t Bienvenido al inventario de productos
@@ -39,98 +38,105 @@ public class Main {
             pass = scanner.nextLine();
             if(!usuario.check_usuario(usuario, name, pass)){
                 System.out.println("Usuario o password incorrecto, intenta nuevamente");
-                logger.warn("Intento de Ingreso con Usuario o password incorrecto");
+                logger.warn("Intento de acceso fallido por usuario o password incorrecto");
             }
+            logger.info("Intento de acceso exitoso usuario " + name);
         }
-        logger.info("Usuario: " + name + " Ingreso al sistema");
-
         while (true){
-            System.out.println("""
-                \tBienvenido al inventario de productos, seleccione una opcion:
-                1) Agregar producto al inventario
-                2) Ver inventario
-                3) Actualizar inventario
-                4) Eliminar producto
-                5) Buscar por categoria
-                6) Buscar por producto
-                7) Generar reporte de inventario
-                8) Salir
-                """);
-            int opcion = scanner.nextInt();
-            switch (opcion){
-                case 1:
-                    System.out.println("Ingresa el nombre del producto");
-                    scanner.nextLine();
-                    String nombre = scanner.nextLine();
-                    System.out.println("Ingresa la descripcion del producto");
-                    String descripcion = scanner.nextLine();
-                    System.out.println("Ingresa la cantidad del producto");
-                    int cantidad = scanner.nextInt();
-                    System.out.println("Ingresa el precio del producto");
-                    double precio = scanner.nextDouble();
-                    System.out.println("Ingresa la categoria del producto");
-                    String categoria = scanner.nextLine();
-                    Productos producto = new Productos(nombre, descripcion, cantidad, precio, categoria);
-                    inventario.agregar_producto(producto, cantidad);
-                    System.out.println("Producto agregado");
-                    logger.info("Producto: " + producto.getNombre() + " agregado al inventario");
-                    break;
-                case 2:
-                    inventario.print_Inventario();
-                    logger.info("Se consulta el inventario");
-                    break;
-                case 3:
-                    System.out.println("Ingresa el nombre producto que deseas actualizar");
-                    scanner.nextLine();
-                    String producto_update = scanner.nextLine();
-                    Productos current_producto = inventario.check_producto(producto_update);
-                    if (current_producto == null) break;
-                    System.out.println("1) Agregar cantidad\n2) Eliminar cantidad");
-                    switch (scanner.nextInt()){//idk if this gonna work
-                        case 1:
-                            System.out.println("Cantidad a agregar");
-                            int plus = scanner.nextInt();
-                            inventario.agregar_cantidad(current_producto, plus);
-                            System.out.println("Producto actualizado");
-                            break;
-                        case 2:
-                            System.out.println("Cantidad a eliminar");
-                            int minus = scanner.nextInt();
-                            inventario.eliminar_cantidad(current_producto, minus);
-                            System.out.println("Producto actualizado");
-                            break;
+            try {
+                System.out.println("""
+                        \tBienvenido al inventario de productos, seleccione una opcion:
+                        1) Agregar producto al inventario
+                        2) Ver inventario                        
+                        3) Actualizar inventario                        
+                        4) Eliminar producto                        
+                        5) Buscar por categoria                        
+                        6) Buscar por producto                        
+                        7) Generar reporte de inventario                        
+                        8) Salir                        
+                        """);
+                int opcion = scanner.nextInt();
+                switch (opcion) {
+                    case 1 -> {
+                        System.out.println("Ingresa el nombre del producto");
+                        scanner.nextLine();
+                        String nombre = scanner.nextLine();
+                        System.out.println("Ingresa la descripcion del producto");
+                        String descripcion = scanner.nextLine();
+                        System.out.println("Ingresa la cantidad del producto");
+                        int cantidad = scanner.nextInt();
+                        System.out.println("Ingresa el precio del producto");
+                        double precio = scanner.nextDouble();
+                        scanner.nextLine(); //Esto limpia el buffer ya que nextDouble no consume \n
+                        System.out.println("Ingresa la categoria del producto");
+                        String categoria = scanner.nextLine();
+                        try {
+                            Productos producto = new Productos(nombre, descripcion, cantidad, precio, categoria);
+                            if (producto.getCantidad() < 0 || producto.getPrecio() < 0) {
+                                logger.warn("Intento de agregar producto fallido por cantidad o precio negativo");
+                                throw new IllegalArgumentException("La cantidad o el precio no pueden ser negativos.");
+                            } else {
+                                inventario.agregar_producto(producto, cantidad);
+                                System.out.println("Producto agregado");
+                                logger.info("Producto agregado con exito");
+                            }
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("La cantidad o el precio no pueden ser negativos. Por favor ingresa de nuevo el producto" + e.getMessage());
+                            logger.warn("Intento de agregar producto fallido por que la cantidad tiene que ser un numero positivo");
+                        }
                     }
-                    logger.info("Producto: " + current_producto.getNombre() + " actualizado");
-                    break;
-                case 4:
-                    System.out.println("Ingresa el nombre del producto que deseas eliminar");
-                    scanner.nextLine();
-                    String producto_delete = scanner.nextLine();
-                    inventario.eliminar_producto(inventario.check_producto(producto_delete));
-                    System.out.println("Producto eliminado");
-                    logger.info("Producto: " + producto_delete + " eliminado");
-                    break;
-                case 5:
-                    System.out.println("Ingresa la categoria del producto que deseas buscar");
-                    scanner.nextLine();
-                    String categoria_search = scanner.nextLine();
-                    inventario.print_categoria(categoria_search);
-                    logger.info("Se consulta por la categoria: " + categoria_search);
-                    break;
-                case 6:
-                    System.out.println("Ingresa el nombre del producto que deseas buscar");
-                    scanner.nextLine();
-                    String producto_search = scanner.nextLine();
-                    inventario.check_producto(producto_search);
-                    logger.info("Se consulta por el producto: " + producto_search);
-                    break;
-                case 7:
-                    inventario.reporte_inventario();
-                    logger.info("Se genera el reporte de inventario");
-                    break;
-                case 8:
-                    logger.info("Sesion finalizada");
-                    System.exit(0);
+                    case 2 -> inventario.print_Inventario();
+                    case 3 -> {
+                        System.out.println("Ingresa el nombre producto que deseas actualizar");
+                        scanner.nextLine();
+                        String producto_update = scanner.nextLine();
+                        Productos current_producto = inventario.check_producto(producto_update);
+                        if (current_producto == null) break;
+                        System.out.println("1) Agregar cantidad\n2) Eliminar cantidad");
+                        switch (scanner.nextInt()) {
+                            case 1 -> {
+                                System.out.println("Cantidad a agregar");
+                                int plus = scanner.nextInt();
+                                inventario.agregar_cantidad(current_producto, plus);
+                                System.out.println("Producto actualizado");
+                            }
+                            case 2 -> {
+                                System.out.println("Cantidad a eliminar");
+                                int minus = scanner.nextInt();
+                                inventario.eliminar_cantidad(current_producto, minus);
+                                System.out.println("Producto actualizado");
+                            }
+                        }
+                    }
+                    case 4 -> {
+                        System.out.println("Ingresa el nombre del producto que deseas eliminar");
+                        scanner.nextLine();
+                        String producto_delete = scanner.nextLine();
+                        inventario.eliminar_producto(inventario.check_producto_4(producto_delete));
+
+                    }
+                    case 5 -> {
+                        System.out.println("Ingresa la categoria del producto que deseas buscar");
+                        scanner.nextLine();
+                        String categoria_search = scanner.nextLine();
+                        inventario.print_categoria(categoria_search);
+                    }
+                    case 6 -> {
+                        System.out.println("Ingresa el nombre del producto que deseas buscar");
+                        scanner.nextLine();
+                        String producto_search = scanner.nextLine();
+                        inventario.check_producto(producto_search);
+                    }
+                    case 7 -> inventario.reporte_inventario();
+                    case 8 -> System.exit(0);
+                }
+            }catch (InputMismatchException e) {
+                System.out.println("Ingresa un numero valido" + e.getMessage());
+                scanner.nextLine();
+            } catch (NoSuchElementException e) {
+                System.out.println("Error: No se encontraron más elementos en la entrada." + e.getMessage());
+            } catch (IllegalStateException e) {
+                System.out.println("Error: El scanner ya está cerrado." + e.getMessage());
             }
         }
     }

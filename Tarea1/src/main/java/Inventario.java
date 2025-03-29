@@ -31,11 +31,13 @@ public class Inventario {
         }
     }
 
-    protected void eliminar_producto(Productos producto){
+    protected boolean eliminar_producto(Productos producto){
         try {
             inventario.remove(producto);
+            return true;
         } catch (Exception e) {
             System.out.println("Error al eliminar el producto" + e.getMessage());
+            return false;
         }
     }
 
@@ -52,6 +54,18 @@ public class Inventario {
         for (Productos producto : inventario.keySet()) {
             if (producto.getNombre().equals(name)) {
                 System.out.println("Actualmente hay " + inventario.get(producto) + " unidades");
+                return producto;
+            }
+        }
+        //System.out.println("Producto no encontrado"); Se comenta para evitar doble mensaje.
+        return  null;
+    }
+
+    protected Productos check_producto_4(String name) {
+        for (Productos producto : inventario.keySet()) {
+            if (producto.getNombre().equals(name)) {
+                System.out.println("Actualmente hay " + inventario.get(producto) + " unidades");
+                System.out.println("Producto Eliminado");
                 return producto;
             }
         }
