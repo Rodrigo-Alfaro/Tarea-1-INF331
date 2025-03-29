@@ -29,9 +29,8 @@ Nos ha dicho que, con tanta tecnología, necesita algo práctico y funcional.
 ## Licencia
 
 ---
-## Flujo de la administracion
-  Se esta utilizando gitflow workflow (branches main, develop y features)
-
+## Entregable
+El entregable se encuentra en [Tarea1/Documentacion](https://github.com/Rodrigo-Alfaro/Tarea-1-INF331/blob/main/Tarea1/Documentos/Documentacion.md)
 
 
 
