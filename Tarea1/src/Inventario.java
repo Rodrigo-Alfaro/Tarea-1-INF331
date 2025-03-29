@@ -55,7 +55,7 @@ public class Inventario {
                 return producto;
             }
         }
-        System.out.println("Producto no encontrado");
+        //System.out.println("Producto no encontrado"); Se comenta para evitar doble mensaje.
         return  null;
     }
 
