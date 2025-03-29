@@ -3,7 +3,7 @@ Un emprendedor nos ha solicitado una aplicación sencilla para gestionar su inve
 Nos ha dicho que, con tanta tecnología, necesita algo práctico y funcional.
 
 ---
-##¿Cómo especificarías mejor el requerimiento? (Validación)
+## ¿Cómo especificarías mejor el requerimiento? (Validación)
 
 ---
 Para aclarar y mejorar el requerimiento original, es necesario trabajar en la validación del mismo, aclarando los detalles y la funcionalidad que el emprendedor necesita.
@@ -96,9 +96,20 @@ Resultado esperado: La aplicación cierra la sesión y termina el programa.
 ```
 
 ## ¿Cómo asegurarías que el programa cumpla el requerimiento? (Verificación)
+Para este caso, podemos utilizar los casos de usos presentados anteriormente, asi como tambien las instrucciones especificadas en el mismo enunciado de la tarea, con esto podemos hacer pruebas de funcionamiento contrastando los artifactos de especifiaciones que tenemos con el programa como tal, buscando como resultado que nuestro programa responda como se tiene esperado que responda.
 
 ## Organización, explicar cómo se organizó el proyecto y el flujo de trabajo de éste.
+Trabajamos con [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=What%20is%20Gitflow%3F,lived%20branches%20and%20larger%20commits.), con ello separamos el proyecto en 3 categorias de branches:
+  - Main
+  - Develop
+  - Features (ejemplo: feature_branch, log4j_branch, etc.)
+
+    
+Con ello tenemos que en la branch main se tendra la version mas actualizada terminada del programa, es decir, por ejemplo la version 1.0.0 con todas las funcionalidades terminadas (ejemplo como en produccion), en Develop estara el codigo a trabajar para integrar features, y en features estaran funcionalidades a desarrollar.
+En cuanto al desarrollo como tal, se crean branches a partir de develop para hacer features, una vez terminadas estas se mergean a develop, y una vez listas todas las features planteadas para el lanzamiento (en este caso todo lo pedido por la tarea) se mergea develop con main. 
 
 ## Incluir evidencia de flujo de trabajo y configuraciones realizadas (Imágenes de pantalla).
+![image](https://github.com/user-attachments/assets/6f308cc6-3bea-4d9e-ac48-44a68e829787)
 
 ## Problemas encontrados y como se solucionaron.
+- Unos de los problemas que encontramos como consecuencia de como se creo el proyecto en una primera instancia, fue que al anadir la feature de log4j, se tuvo que cambiar mayormente la estructura del proyecto al integrar maven, sol tbd.
