@@ -40,7 +40,7 @@ public class Main {
                 System.out.println("Usuario o password incorrecto, intenta nuevamente");
                 logger.warn("Intento de acceso fallido por usuario o password incorrecto");
             }
-            logger.info("Intento de acceso exitoso usuario " + name);
+            logger.info("Intento de acceso exitoso usuario: " + name);
         }
         while (true){
             try {
@@ -85,7 +85,10 @@ public class Main {
                             logger.warn("Intento de agregar producto fallido por que la cantidad tiene que ser un numero positivo");
                         }
                     }
-                    case 2 -> inventario.print_Inventario();
+                    case 2 -> {
+                        inventario.print_Inventario();
+                        logger.info("Inventario Consultado");
+                    }
                     case 3 -> {
                         System.out.println("Ingresa el nombre producto que deseas actualizar");
                         scanner.nextLine();
@@ -94,17 +97,27 @@ public class Main {
                         if (current_producto == null) break;
                         System.out.println("1) Agregar cantidad\n2) Eliminar cantidad");
                         switch (scanner.nextInt()) {
+                            //added abs to handle negative values in both cases just to be sure
                             case 1 -> {
                                 System.out.println("Cantidad a agregar");
                                 int plus = scanner.nextInt();
-                                inventario.agregar_cantidad(current_producto, plus);
+                                int abs = Math.abs(plus);
+                                inventario.agregar_cantidad(current_producto, abs);
                                 System.out.println("Producto actualizado");
+                                logger.info("Unidades del producto "+current_producto.getNombre()+" actualizadas con exito");
                             }
                             case 2 -> {
                                 System.out.println("Cantidad a eliminar");
                                 int minus = scanner.nextInt();
-                                inventario.eliminar_cantidad(current_producto, minus);
+                                int abs = Math.abs(minus);
+                                if (abs > current_producto.getCantidad()){
+                                    System.out.println("No hay suficientes unidades");
+                                    logger.warn("Intento de actualizar inventario fallido por que no hay suficientes unidades");
+                                    break;
+                                };
+                                inventario.eliminar_cantidad(current_producto, abs);
                                 System.out.println("Producto actualizado");
+                                logger.info("Unidades del producto "+current_producto.getNombre()+" actualizadas con exito");
                             }
                         }
                     }
@@ -113,29 +126,40 @@ public class Main {
                         scanner.nextLine();
                         String producto_delete = scanner.nextLine();
                         inventario.eliminar_producto(inventario.check_producto_4(producto_delete));
-
+                        logger.info("Producto"+producto_delete+" eliminado");
                     }
                     case 5 -> {
                         System.out.println("Ingresa la categoria del producto que deseas buscar");
                         scanner.nextLine();
                         String categoria_search = scanner.nextLine();
                         inventario.print_categoria(categoria_search);
+                        logger.info("Producto"+categoria_search+" encontrado");
                     }
                     case 6 -> {
                         System.out.println("Ingresa el nombre del producto que deseas buscar");
                         scanner.nextLine();
                         String producto_search = scanner.nextLine();
                         inventario.check_producto(producto_search);
+                        logger.info("Producto"+producto_search+" encontrado");
                     }
-                    case 7 -> inventario.reporte_inventario();
-                    case 8 -> System.exit(0);
+                    case 7 -> {
+                        inventario.reporte_inventario();
+                        logger.info("Reporte de inventario generado");
+                    }
+                    case 8 ->{
+                        System.exit(0);
+                        logger.info("Saliendo del programa");
+                    }
                 }
             }catch (InputMismatchException e) {
+                logger.warn("Intento de ingreso fallido por que el usuario ingreso un caracter no valido");
                 System.out.println("Ingresa un numero valido" + e.getMessage());
                 scanner.nextLine();
             } catch (NoSuchElementException e) {
+                logger.warn("Intento de ingreso fallido por que el usuario no ingreso ningun caracter");
                 System.out.println("Error: No se encontraron más elementos en la entrada." + e.getMessage());
             } catch (IllegalStateException e) {
+                logger.error("Error con la entrada de datos");
                 System.out.println("Error: El scanner ya está cerrado." + e.getMessage());
             }
         }
