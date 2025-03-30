@@ -112,4 +112,9 @@ En cuanto al desarrollo como tal, se crean branches a partir de develop para hac
 ![image](https://github.com/user-attachments/assets/6f308cc6-3bea-4d9e-ac48-44a68e829787)
 
 ## Problemas encontrados y como se solucionaron.
-- Unos de los problemas que encontramos como consecuencia de como se creo el proyecto en una primera instancia, fue que al anadir la feature de log4j, se tuvo que cambiar mayormente la estructura del proyecto al integrar maven, sol tbd.
+- Unos de los problemas que encontramos como consecuencia de como se creo el proyecto en una primera instancia, fue que al anadir la feature de log4j, se tuvo que cambiar mayormente la estructura del proyecto al integrar maven, se soluciono haciendo el merge como se haria normalmente de la branch de log4j hacia develop y despues integrando los cambios de la branch de excepciones manualmente, ya que estos no eran mayores.
+
+# Pruebas
+Se utilizo greentest.ai, y en una primera instancia hicimos pruebas solamente para la verificacion de nuestro programa, enfocandonos en el correcto funcioanmiento del CRUD en el inventario:
+![image](https://github.com/user-attachments/assets/61b1331d-c87b-4e75-aebf-93423a047e79)
+
