@@ -15,19 +15,21 @@ Nos ha dicho que, con tanta tecnología, necesita algo práctico y funcional.
 
 ## Instalación
 
+Puede descargar una copia del codigo fuente directamente desde Github, o clonar el repositorio
 ---
+
 
 
 ## Cómo usar
-
+Con Intellij Idea abrir el directorio en donde se encuentra el repositorio, abrir path_placeholder y hacer un Run del projecto.
 ---
 
 ## Cómo contribuir
-
+Actualmente este proyecto no esta acepando contribuciones
 ---
 
 ## Licencia
-
+ ()
 ---
 ## Entregable
 El entregable se encuentra en [Tarea1/Documentacion](https://github.com/Rodrigo-Alfaro/Tarea-1-INF331/blob/main/Tarea1/Documentos/Documentacion.md)
