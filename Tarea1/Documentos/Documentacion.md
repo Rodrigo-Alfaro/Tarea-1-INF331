@@ -103,6 +103,7 @@ Trabajamos con [Gitflow Workflow](https://www.atlassian.com/git/tutorials/compar
   - Main
   - Develop
   - Features (ejemplo: feature_branch, log4j_branch, etc.)
+Dentro de estas definimos roles para hacer los pull request y merges dentro del repositorio, en estos se definio que cualquiera de los integrantes puede iniciar un pull request, pero este debe de ser aprobado (con un review) por el otro companero, asignandolo como reviewer en el pull request y solo haciendo efectivo el merge una vez aprobado dicho pull request.
 
     
 Con ello tenemos que en la branch main se tendra la version mas actualizada terminada del programa, es decir, por ejemplo la version 1.0.0 con todas las funcionalidades terminadas (ejemplo como en produccion), en Develop estara el codigo a trabajar para integrar features, y en features estaran funcionalidades a desarrollar.
@@ -117,4 +118,8 @@ En cuanto al desarrollo como tal, se crean branches a partir de develop para hac
 # Pruebas
 Se utilizo greentest.ai, y en una primera instancia hicimos pruebas solamente para la verificacion de nuestro programa, enfocandonos en el correcto funcioanmiento del CRUD en el inventario:
 ![image](https://github.com/user-attachments/assets/61b1331d-c87b-4e75-aebf-93423a047e79)
+Dentro de una segunda instancia se anadieron pruebas para probar fallos comunes dentro del funcionamiento del programa, como por ejemplo opciones no validas dentro del menu, o tratar de borrar un producto no existente en el inventario.
+![image](https://github.com/user-attachments/assets/16f12f1a-6ebb-498d-a3d5-5d40772cc30c)
+
+
 
