@@ -29,7 +29,7 @@ Actualmente este proyecto no esta acepando contribuciones
 ---
 
 ## Licencia
- ()
+ [MIT License](https://github.com/Rodrigo-Alfaro/Tarea-1-INF331/blob/main/LICENSE)
 ---
 ## Entregable
 El entregable se encuentra en [Tarea1/Documentacion](https://github.com/Rodrigo-Alfaro/Tarea-1-INF331/blob/main/Tarea1/Documentos/Documentacion.md)
