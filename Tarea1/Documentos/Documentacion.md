@@ -109,17 +109,28 @@ Dentro de estas definimos roles para hacer los pull request y merges dentro del 
 Con ello tenemos que en la branch main se tendra la version mas actualizada terminada del programa, es decir, por ejemplo la version 1.0.0 con todas las funcionalidades terminadas (ejemplo como en produccion), en Develop estara el codigo a trabajar para integrar features, y en features estaran funcionalidades a desarrollar.
 En cuanto al desarrollo como tal, se crean branches a partir de develop para hacer features, una vez terminadas estas se mergean a develop, y una vez listas todas las features planteadas para el lanzamiento (en este caso todo lo pedido por la tarea) se mergea develop con main. 
 
+
+En cuanto a la proteccion de las branches, se definio un ruleset para proteger la branch main de posibles borrados accidentales de datos, asi como tambien la regla de que se debe de hacer un pull request nates de hacer un merge hacia esta, y dicho pull request debe de ser aprobado por al menos una persona (para seguir la logica de lo explicado anteriormente).
+
 ## Incluir evidencia de flujo de trabajo y configuraciones realizadas (Imágenes de pantalla).
 ![image](https://github.com/user-attachments/assets/6f308cc6-3bea-4d9e-ac48-44a68e829787)
+![image](https://github.com/user-attachments/assets/a4262e7e-6aa9-40c2-b217-e26ebb75d31a)
+![image](https://github.com/user-attachments/assets/67db821a-e9ad-4fe3-88f7-1d3fbf2ed264)
+
+
 
 ## Problemas encontrados y como se solucionaron.
 - Unos de los problemas que encontramos como consecuencia de como se creo el proyecto en una primera instancia, fue que al anadir la feature de log4j, se tuvo que cambiar mayormente la estructura del proyecto al integrar maven, se soluciono haciendo el merge como se haria normalmente de la branch de log4j hacia develop y despues integrando los cambios de la branch de excepciones manualmente, ya que estos no eran mayores.
+- Otro de los problemas fue en cuanto a la especifiacion de los requerimientos, con la cual se hicieron varios supuestos razonables en base a la informacion que teniamos disponible, asi tambien como a preguntas que se le realizaron en clase al profesor acerca de la tarea.
 
 # Pruebas
 Se utilizo greentest.ai, y en una primera instancia hicimos pruebas solamente para la verificacion de nuestro programa, enfocandonos en el correcto funcioanmiento del CRUD en el inventario:
 ![image](https://github.com/user-attachments/assets/61b1331d-c87b-4e75-aebf-93423a047e79)
 Dentro de una segunda instancia se anadieron pruebas para probar fallos comunes dentro del funcionamiento del programa, como por ejemplo opciones no validas dentro del menu, o tratar de borrar un producto no existente en el inventario.
 ![image](https://github.com/user-attachments/assets/16f12f1a-6ebb-498d-a3d5-5d40772cc30c)
+
+![image](https://github.com/user-attachments/assets/071af148-f2e7-4382-8788-2a2a71ca35b1)
+
 
 
 
