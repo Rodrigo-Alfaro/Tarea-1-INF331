@@ -99,35 +99,43 @@ Resultado esperado: La aplicación cierra la sesión y termina el programa.
 Para este caso, podemos utilizar los casos de usos presentados anteriormente, asi como tambien las instrucciones especificadas en el mismo enunciado de la tarea, con esto podemos hacer pruebas de funcionamiento contrastando los artifactos de especifiaciones que tenemos con el programa como tal, buscando como resultado que nuestro programa responda como se tiene esperado que responda.
 
 ## Organización, explicar cómo se organizó el proyecto y el flujo de trabajo de éste.
-Trabajamos con [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=What%20is%20Gitflow%3F,lived%20branches%20and%20larger%20commits.), con ello separamos el proyecto en 3 categorias de branches:
+
+Trabajamos con [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=What%20is%20Gitflow%3F,lived%20branches%20and%20larger%20commits.), con ello separamos el proyecto en 3 categorías de branches:
   - Main
   - Develop
   - Features (ejemplo: feature_branch, log4j_branch, etc.)
-Dentro de estas definimos roles para hacer los pull request y merges dentro del repositorio, en estos se definio que cualquiera de los integrantes puede iniciar un pull request, pero este debe de ser aprobado (con un review) por el otro companero, asignandolo como reviewer en el pull request y solo haciendo efectivo el merge una vez aprobado dicho pull request.
 
-    
-Con ello tenemos que en la branch main se tendra la version mas actualizada terminada del programa, es decir, por ejemplo la version 1.0.0 con todas las funcionalidades terminadas (ejemplo como en produccion), en Develop estara el codigo a trabajar para integrar features, y en features estaran funcionalidades a desarrollar.
-En cuanto al desarrollo como tal, se crean branches a partir de develop para hacer features, una vez terminadas estas se mergean a develop, y una vez listas todas las features planteadas para el lanzamiento (en este caso todo lo pedido por la tarea) se mergea develop con main. 
+Dentro de estas definimos roles para hacer los pull request y merges dentro del repositorio. En estos se definió que cualquiera de los integrantes puede iniciar un pull request, pero este debe ser aprobado (con un review) por el otro compañero, asignándolo como reviewer en el pull request y solo haciendo efectivo el merge una vez aprobado dicho pull request.
 
+Con ello tenemos que en la branch main se tendrá la versión más actualizada terminada del programa, es decir, por ejemplo la versión 1.0.0 con todas las funcionalidades terminadas (ejemplo como en producción), en Develop estará el código a trabajar para integrar features, y en features estarán funcionalidades a desarrollar.
 
-En cuanto a la proteccion de las branches, se definio un ruleset para proteger la branch main de posibles borrados accidentales de datos, asi como tambien la regla de que se debe de hacer un pull request nates de hacer un merge hacia esta, y dicho pull request debe de ser aprobado por al menos una persona (para seguir la logica de lo explicado anteriormente).
+En cuanto al desarrollo como tal, se crean branches a partir de develop para hacer features, una vez terminadas estas se mergean a develop, y una vez listas todas las features planteadas para el lanzamiento (en este caso todo lo pedido por la tarea) se mergea develop con main.
+
+En cuanto a la protección de las branches, se definió un ruleset para proteger la branch main de posibles borrados accidentales de datos, así como también la regla de que se debe hacer un pull request antes de hacer un merge hacia esta, y dicho pull request debe ser aprobado por al menos una persona (para seguir la lógica de lo explicado anteriormente).
+
+También se configuro Slack, para tener notificaciones sobre la actividad realizada en el repositorio.
 
 ## Incluir evidencia de flujo de trabajo y configuraciones realizadas (Imágenes de pantalla).
 ![image](https://github.com/user-attachments/assets/6f308cc6-3bea-4d9e-ac48-44a68e829787)
 ![image](https://github.com/user-attachments/assets/a4262e7e-6aa9-40c2-b217-e26ebb75d31a)
 ![image](https://github.com/user-attachments/assets/67db821a-e9ad-4fe3-88f7-1d3fbf2ed264)
+![image](https://github.com/user-attachments/assets/55f0624b-68e1-43a6-bcca-b4a718f8d8fa)
+![image](https://github.com/user-attachments/assets/fb85d0c3-202e-430b-9a7f-40d045d0dbec)
+![image](https://github.com/user-attachments/assets/3f39fd76-6227-4868-9705-d310fdf0bd65)
+![image](https://github.com/user-attachments/assets/1801b227-72d1-49e1-b67a-60b104b1271a)
 
 
-
-## Problemas encontrados y como se solucionaron.
-- Unos de los problemas que encontramos como consecuencia de como se creo el proyecto en una primera instancia, fue que al anadir la feature de log4j, se tuvo que cambiar mayormente la estructura del proyecto al integrar maven, se soluciono haciendo el merge como se haria normalmente de la branch de log4j hacia develop y despues integrando los cambios de la branch de excepciones manualmente, ya que estos no eran mayores.
-- Otro de los problemas fue en cuanto a la especifiacion de los requerimientos, con la cual se hicieron varios supuestos razonables en base a la informacion que teniamos disponible, asi tambien como a preguntas que se le realizaron en clase al profesor acerca de la tarea.
+## Problemas encontrados y cómo se solucionaron.
+- Uno de los problemas que encontramos como consecuencia de cómo se creó el proyecto en una primera instancia, fue que al añadir la feature de log4j, se tuvo que cambiar mayormente la estructura del proyecto al integrar Maven. Se solucionó haciendo el merge como se haría normalmente de la branch de log4j hacia develop y después integrando los cambios de la branch de excepciones manualmente, ya que estos no eran mayores.
+- Otro de los problemas fue en cuanto a la especificación de los requerimientos, con la cual se hicieron varios supuestos razonables en base a la información que teníamos disponible, así también como a preguntas que se le realizaron en clase al profesor acerca de la tarea.
 
 # Pruebas
-Se utilizo greentest.ai, y en una primera instancia hicimos pruebas solamente para la verificacion de nuestro programa, enfocandonos en el correcto funcioanmiento del CRUD en el inventario:
+Se utilizó greentest.ai, y en una primera instancia hicimos pruebas solamente para la verificación de nuestro programa, enfocándonos en el correcto funcionamiento del CRUD en el inventario:
 ![image](https://github.com/user-attachments/assets/61b1331d-c87b-4e75-aebf-93423a047e79)
-Dentro de una segunda instancia se anadieron pruebas para probar fallos comunes dentro del funcionamiento del programa, como por ejemplo opciones no validas dentro del menu, o tratar de borrar un producto no existente en el inventario.
-![image](https://github.com/user-attachments/assets/16f12f1a-6ebb-498d-a3d5-5d40772cc30c)
+Dentro de una segunda instancia se añadieron pruebas para probar fallos comunes dentro del funcionamiento del programa, como por ejemplo opciones no válidas dentro del menú, o tratar de borrar un producto no existente en el inventario.
+![image](https://github.com/user-attachments/assets/6f1ae47d-76c3-4ab6-90d2-4b8637bc2377)
+También se probó la generación con IA de las pruebas, y aunque en este caso no se utilizaron ocuparon, quedaron el borrador para tenerlas en cuenta en un posible nuevo ciclo de pruebas
+![image](https://github.com/user-attachments/assets/60fc8408-c7a2-4735-90cf-062493f6ad55)
 
 ![image](https://github.com/user-attachments/assets/071af148-f2e7-4382-8788-2a2a71ca35b1)
 
