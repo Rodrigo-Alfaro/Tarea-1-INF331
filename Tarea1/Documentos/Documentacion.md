@@ -96,7 +96,12 @@ Resultado esperado: La aplicación cierra la sesión y termina el programa.
 ```
 
 ## ¿Cómo asegurarías que el programa cumpla el requerimiento? (Verificación)
-Para este caso, podemos utilizar los casos de usos presentados anteriormente, asi como tambien las instrucciones especificadas en el mismo enunciado de la tarea, con esto podemos hacer pruebas de funcionamiento contrastando los artifactos de especifiaciones que tenemos con el programa como tal, buscando como resultado que nuestro programa responda como se tiene esperado que responda.
+Para este caso, podemos utilizar los casos de usos presentados anteriormente, asi como tambien las instrucciones especificadas en el mismo enunciado de la tarea, con esto podemos hacer pruebas de funcionamiento contrastando los artifactos de especifiaciones que tenemos con el programa como tal, buscando como resultado que nuestro programa responda como se tiene esperado que responda.\
+A su vez también podemos contrastar el programa con los casos de pruebas, ya que estos dictaminan, según su resultado esperado, el comportamiento que debería de seguir nuestro programa de acuerdo con lo esperado.
+Finalmente, vemos que la verificación la podemos reducir a contrastar los artefactos que tenemos con el programa, como se mencionó anteriormente.
+
+## Logs
+Se implementaron logs utilizando log4j2, se ocupa maven para manejar esta dependencia, y finalmente los logs se guardaran en [logs/application.log](https://github.com/Rodrigo-Alfaro/Tarea-1-INF331/blob/main/logs/application.log)
 
 ## Organización, explicar cómo se organizó el proyecto y el flujo de trabajo de éste.
 
@@ -123,6 +128,7 @@ También se configuro Slack, para tener notificaciones sobre la actividad realiz
 ![image](https://github.com/user-attachments/assets/fb85d0c3-202e-430b-9a7f-40d045d0dbec)
 ![image](https://github.com/user-attachments/assets/3f39fd76-6227-4868-9705-d310fdf0bd65)
 ![image](https://github.com/user-attachments/assets/1801b227-72d1-49e1-b67a-60b104b1271a)
+![image](https://github.com/user-attachments/assets/122aea9e-1ea2-4d3a-be95-f9a69260ad86)
 
 
 ## Problemas encontrados y cómo se solucionaron.
